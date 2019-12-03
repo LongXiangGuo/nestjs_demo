@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CDP_PUBLIC_PATH</key>
+	<string>/gcdm/public/bmwconnected/</string>
+	<key>CDP_PUBLIC_PATH_VERSIONED</key>
+	<string>/gcdm/public/v4/bmwconnected/</string>
+	<key>CDP_PROTECTED_PATH</key>
+	<string>/gcdm/protected/bmwconnected/</string>
+	<key>GCDM_TOKEN_PATH</key>
+	<string>/gcdm/oauth/token</string>
+	<key>GCDM_CREATE_ACCOUNT_PATH</key>
+	<string>/customers</string>
+	<key>GCDM_CREATE_ACCOUNT_CN_PATH</key>
+	<string>/gcdm/public/cdp/zh_CN/customers</string>
+	<key>GCDM_ACCOUNT_ACTIVATION_PATH</key>
+	<string>/gcdm/public/cdp/zh_CN/workflows/mobileAdministrations/customers/activation</string>
+	<key>GCDM_RESET_PASSWORD_PATH</key>
+	<string>/customers/userAccount/password/reset</string>
+	<key>GCDM_GET_SMS_TOKEN_PATH</key>
+	<string>/gcdm/public/cdp/zh_CN/customers/userAccount/password/reset</string>
+	<key>GCDM_RESEND_SMS_TOKEN_PATH</key>
+	<string>/gcdm/public/cdp/zh_CN/workflows/mobileAdministrations/customers/resend</string>
+	<key>GCDM_RESET_PASSWORD_BY_SMS_TOKEN_PATH</key>
+	<string>/gcdm/public/cdp/en_CN/workflows/passwordResets/customers/confirmation</string>
+	<key>GCDM_RESET_PASSWORD_BY_SMS_VALIDATE_ACCOUNT_PATH</key>
+	<string>/gcdm/public/cdp/en_CN/userAccounts</string>
+	<key>GCDM_CUSTOMER_PATH</key>
+	<string>/customers</string>
+	<key>GCDM_USERDETAILS_PATH</key>
+	<string>/customers/userAccount</string>
+	<key>GCDM_RESEND_EMAIL_PATH</key>
+	<string>/workflows/mailAdministrations/customers/resend</string>
+</dict>
+</plist>
