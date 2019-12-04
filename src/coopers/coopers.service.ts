@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, HttpException } from '@nestjs/common';
 import { CoopersDto } from './cooper.model';
 import { Length, IsNotEmpty } from 'class-validator';
 import { Int32 } from 'bson';
@@ -17,41 +17,64 @@ export class CoopersService {
         }
     }
 
-    async getCooper(id: Int32 ): Promise<CoopersDto> {
+    async getCooper(id: number ): Promise<CoopersDto> {
         const length = CoopersService.coopers.length;
         if (length === 0) {
-            return Promise.reject('cooper was null');
+            throw new HttpException("cooper was null", 404);
         } else {
-            const cooper =  CoopersService.coopers[length - 1];
-            return Promise.resolve(cooper);  
+            for (let cooper of CoopersService.coopers) {
+                if (cooper.id == id ){
+                  return Promise.resolve(cooper);  
+                }
+            } 
+            throw new HttpException("could not found the cooper with $id", 404);
         }
     }
 
-    async getCooperDetail(id: Int32 ): Promise<CoopersDto> {
+    async getCooperDetail(id: number ): Promise<CoopersDto> {
         const length = CoopersService.coopers.length;
         if (length === 0) {
-            return Promise.reject('cooper was null');
+            throw new HttpException("cooper was null", 404);
         } else {
-            const cooper =  CoopersService.coopers[length - 1];
-            cooper.content = 'this is cooper detial';
-            return Promise.resolve(cooper);  
+            for (let cooper of CoopersService.coopers) {
+                if (cooper.id == id ){
+                  return Promise.resolve(cooper);  
+                }
+            } 
+            throw new HttpException("could not found the cooper with $id", 404);
         }
     }
 
-    async addCoopers(cooper: CoopersDto): Promise<boolean> {
+    async addCoopers(cooper: CoopersDto): Promise<CoopersDto> {
+        for (let _cooper of CoopersService.coopers) {
+            if (_cooper.id == cooper.id ){
+              throw new HttpException("add cooper failed, there is already have a cooper", 404);
+            }
+        } 
         CoopersService.coopers.push(cooper);
-        return Promise.resolve(true);
+        return  Promise.resolve(cooper);
     }
 
-    async deleteCoopers(id: Int32 ): Promise<boolean> {
-        CoopersService.coopers.pop();
-        return Promise.resolve(true);
+    async deleteCooper(id: number ): Promise<boolean> {
+        for (let _cooper of CoopersService.coopers) {
+            if (_cooper.id == id){
+               const index = CoopersService.coopers.indexOf(_cooper);
+               CoopersService.coopers.splice(index,1);
+               return Promise.resolve(true);
+            }
+        } 
+         throw new HttpException("delete cooper failed, cooper is not exist", 404);
     }
 
-    async updateCoopers(cooper: CoopersDto): Promise<boolean> {
-        CoopersService.coopers.pop();
-        CoopersService.coopers.push(cooper);
-        return Promise.resolve(true);
+    async updateCoopers(cooper: CoopersDto): Promise<CoopersDto> {
+        for (let _cooper of CoopersService.coopers) {
+            if (_cooper.id == cooper.id){
+               const index = CoopersService.coopers.indexOf(cooper);
+               CoopersService.coopers[index] = cooper;
+              return Promise.resolve(cooper);
+            }
+        } 
+        throw new HttpException("could not found cooper in db to update",404);
     }
 } 
 

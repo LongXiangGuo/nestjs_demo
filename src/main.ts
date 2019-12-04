@@ -37,7 +37,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
   
   //6. 设置端口监听
-  await app.listen(3001);
+  await app.listen(3002);
 
 }
 
